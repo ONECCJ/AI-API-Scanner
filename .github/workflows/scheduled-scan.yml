@@ -37,10 +37,10 @@ jobs:
           echo "🕐 当前时间（北京）: $(TZ='Asia/Shanghai' date)"
       
       - name: 📥 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       
       - name: 🐍 设置 Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.10'
       
@@ -131,7 +131,7 @@ jobs:
       
       - name: 📤 上传报告
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: scheduled-scan-${{ github.run_number }}
           path: |
@@ -186,7 +186,7 @@ jobs:
       
       - name: 🚨 创建告警Issue（发现问题时）
         if: steps.analyze.outputs.needs_alert == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           TOTAL_FINDINGS: ${{ steps.analyze.outputs.total_findings }}
           HIGH_CONFIDENCE: ${{ steps.analyze.outputs.high_confidence }}
