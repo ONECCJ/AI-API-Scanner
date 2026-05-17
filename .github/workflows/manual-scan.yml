@@ -43,10 +43,10 @@ jobs:
     
     steps:
       - name: 📥 检出代码
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       
       - name: 🐍 设置 Python 3.10
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.10'
       
@@ -104,7 +104,7 @@ jobs:
       
       - name: 📤 上传报告
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: manual-scan-report-${{ github.run_number }}
           path: scan_reports/
@@ -179,7 +179,7 @@ jobs:
           always() && 
           github.event.inputs.create_issue == 'true' && 
           steps.analyze.outputs.has_findings == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
           FINDINGS_COUNT: ${{ steps.analyze.outputs.findings_count }}
           SCAN_TYPE: ${{ github.event.inputs.scan_type }}
